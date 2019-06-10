@@ -1,0 +1,1 @@
+basic structure for node applications.
