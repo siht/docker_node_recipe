@@ -11,6 +11,7 @@ services:
         - NODE_IMAGE=$NODE_IMAGE
         - PROJECT_DIR=$PROJECT_DIR
         - DOCKER_PROJECT_DIR=$DOCKER_PROJECT_DIR
+        - PM2_CONFIG_FILE=$PM2_CONFIG_FILE
     depends_on:
       - $CONTAINER_DB_NAME
     entrypoint: ./setup.sh
@@ -24,6 +25,7 @@ services:
         - NODE_IMAGE=$NODE_IMAGE
         - PROJECT_DIR=$PROJECT_DIR
         - DOCKER_PROJECT_DIR=$DOCKER_PROJECT_DIR
+        - PM2_CONFIG_FILE=$PM2_CONFIG_FILE
     depends_on:
       - $CONTAINER_DB_NAME
       - app_setup
