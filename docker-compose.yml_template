@@ -30,4 +30,4 @@ services:
       - $CONTAINER_DB_NAME
       - app_setup
     ports:
-      - 3000:3000
+      - $PORT:$PORT
