@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  $CONTAINER_DB_NAME:
+    image: $MONGO_IMAGE
+  app_setup:
+    build:
+      context: .
+      dockerfile: node.Dockerfile
+      args:
+        - NODE_IMAGE=$NODE_IMAGE
+        - PROJECT_DIR=$PROJECT_DIR
+        - DOCKER_PROJECT_DIR=$DOCKER_PROJECT_DIR
+    depends_on:
+      - $CONTAINER_DB_NAME
+    entrypoint: ./setup.sh
+    environment:
+      - CONTAINER_DB_NAME=$CONTAINER_DB_NAME
+  app:
+    build:
+      context: .
+      dockerfile: node.Dockerfile
+      args:
+        - NODE_IMAGE=$NODE_IMAGE
+        - PROJECT_DIR=$PROJECT_DIR
+        - DOCKER_PROJECT_DIR=$DOCKER_PROJECT_DIR
+    depends_on:
+      - $CONTAINER_DB_NAME
+      - app_setup
+    ports:
+      - 3000:3000
